@@ -3,15 +3,23 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
+  state = { test: [] }
+
+  componentDidMount() {
+    fetch('/test')
+    .then(res => res.json())
+    .then(test => this.setState({ test }))
+  }
+
   render() {
     return (
       <div className="App">
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header> */}
         <h1 className="App-intro">
-          Here is where the front-end of our app will live
+          <ul>
+            {this.state.test.map(item =>
+              <li key={item.id}>{item.name}</li>
+            )}
+          </ul>
         </h1>
       </div>
     );
