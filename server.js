@@ -29,6 +29,8 @@ app.get('*', (req, res) => {
 });
 
 mongoose.connect('mongodb://movieurl:ilikepie1@ds235609.mlab.com:35609/heroku_c8sz2s7d');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // Development mode port
 const port = process.env.PORT || 5000;
