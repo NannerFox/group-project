@@ -1,5 +1,65 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  background-color: #bfbfbf;
+  font-family: helvetica;
+}
+
+/*Navbar transparency*/
+.navbar-default{
+  background: gray;
+  border-color:transparent;
+}
+
+/*React Blue underline on hover*/
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  border-bottom: 3px solid #00d8ff;
+  padding-bottom: 3px;
+}
+
+/*Blue glow on search input when selected*/
+.form-control:focus {
+  border-color: #00d8ff;
+  box-shadow: inset 0 1px 1px #00d8ff(0, 0, 0, 0.075), 0 0 8px #00d8ff(255, 0, 0, 0.6);
+}
+
+/*Footer transparency*/
+footer {
+  background:transparent;
+  border-color:transparent;
+}
+
+/*Navbar text colors and opacity*/
+.navbar-default .navbar-brand {
+  font-size: 20px;
+  color: white;
+  /*text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;*/
+}
+.navbar-default .navbar-nav > li > a {
+  font-size: 14px;
+  color: white;
+  /*text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;*/
+}
+.navbar-default .navbar-brand:hover {
+  transition: all 500ms;
+  color: #00d8ff;
+  opacity: 0.75;
+}
+.navbar-default .navbar-nav > li > a:hover {
+  transition: all 500ms;
+  color: white;
+  opacity: 0.75;
+}
+
+a:hover{
+  font-size:88px;
+  transition: all 500ms;
+  font-size-adjust: 20px;
+
 }

@@ -1,25 +1,18 @@
 import React, { Component } from 'react';
+import './index.css';
 import './App.css';
+import Navibar from './navbar.js';
+import Footer from './footer.js';
+import Result from './Result';
 
 class App extends Component {
-  state = { test: [] }
-
-  componentDidMount() {
-    fetch('/test')
-    .then(res => res.json())
-    .then(test => this.setState({ test }))
-  }
-
   render() {
     return (
       <div className="App">
-        <h1 className="App-intro">
-          <ul>
-            {this.state.test.map(item =>
-              <li key={item.id}>{item.name}</li>
-            )}
-          </ul>
-        </h1>
+        <Navibar />
+      <div className="AppContent"> Some Stuff </div>
+      <Result />
+      <Footer />
       </div>
     );
   }
