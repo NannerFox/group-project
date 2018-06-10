@@ -18,6 +18,7 @@ searchMovies = () => {
 
   handleSubmit = e => {
     e.preventDefault();
+    window.location.hash = "#result";
     this.searchMovies();
   };
 

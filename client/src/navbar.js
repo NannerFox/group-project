@@ -12,7 +12,7 @@ class Navibar extends Component {
        <Navbar>
   <Navbar.Header className="navbarStyle">
     <Navbar.Brand>
-      <a href="#home">MovieFive</a>
+      <a href='#home'>MovieFive</a>
     </Navbar.Brand>
   </Navbar.Header>
   <Nav>
