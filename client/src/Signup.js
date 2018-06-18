@@ -11,7 +11,7 @@ class Signup extends React.Component {
           Username:
           <input type="text" name="username"></input>
           Password:
-          <input type="text" name="password"></input>
+          <input type="password" name="password"></input>
           <input type="submit" value="Submit"></input>
         </form>
       </div>
