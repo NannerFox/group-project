@@ -4,14 +4,33 @@ const session = require('express-session');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const morgan = require('morgan');
+const db = mongoose.connection;
+const app = express();
 const User = require('./models/User');
 const Movie = require('./models/Movie');
-const morgan = require('morgan');
+// Development mode port
+const port = process.env.PORT || 5000;
+app.listen(port)
+
+// app middleware
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(cookieParser())
+app.use(morgan('dev'))
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(session({
+  secret: 'mvdamvp',
+  resave: false,
+  saveUninitialized: true
+}));
 
 mongoose.connect('mongodb://movieurl:ilikepie1@ds235609.mlab.com:35609/heroku_c8sz2s7d', function(err) {
   if (err) {
@@ -20,29 +39,13 @@ mongoose.connect('mongodb://movieurl:ilikepie1@ds235609.mlab.com:35609/heroku_c8
     console.log('Connected');
   }
 });
-var db = mongoose.connection;
+
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', () => {
   console.log('DB connected!');
 });
 mongoose.set('bufferCommands', false);
 mongoose.set('debug', true);
-
-app.use(express.static(path.join(__dirname, 'client/build')));
-app.use(cors());
-
-// app middleware
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(cookieParser())
-app.use(morgan('combined'))
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(session({
-  secret: 'mvdamvp',
-  resave: false,
-  saveUninitialized: true
-}));
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
@@ -57,15 +60,16 @@ app.get('/test', (req, res) => {
   ]);
 });
 
-app.put('/movie', function(req, res) {
-  let id = { "$oid" : req.body.id };
+app.post('/movie', function(req, res) {
+  let inName = req.body.name;
+  let name = { name : inName };
   let moviename = req.body.moviename;
   let pic = req.body.pic;
 
-  Movie.findOne(id, function(err, doc) {
+  Movie.findOne(name, function(err, doc) {
     if (err) {
       console.error('error!!!');
-      res.end();
+      res.redirect('/#profile');
     }
     else if (doc) {
         if (doc.movie.one.name == null){
@@ -90,16 +94,16 @@ app.put('/movie', function(req, res) {
         }
         else {
           console.error('All slots filled!');
-          res.end();
+          res.redirect('/#profile');
         }
         doc.save(function (err, updatedMov) {
           if (err) return handleError(err);
-          res.send(updatedMov);
+          res.redirect('/#profile');
         });
       }
       else {
         console.log('no matched query');
-        res.end();
+        res.redirect('/#profile');
       }
     },
     { new : true }
@@ -139,9 +143,5 @@ app.post('/login', passport.authenticate('local'), function(req, res) {
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
-
-// Development mode port
-const port = process.env.PORT || 5000;
-app.listen(port)
 
 module.exports = app;
