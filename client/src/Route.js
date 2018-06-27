@@ -5,6 +5,7 @@ import Login from './Login';
 import Profile from './Profile';
 import Result from './Result';
 import Signup from './Signup';
+// import List from './List';
 
 class Route extends React.Component {
 
@@ -19,6 +20,7 @@ constructor(props){
 
 componentDidMount() {
     window.addEventListener("hashchange", this.routeSwitch);
+    this.setState({user: this.props.user})
 }
 
 routeSwitch() {
@@ -41,6 +43,8 @@ routeSwitch() {
         return <Result />;
       case "#signup":
         return <Signup />;
+      // case "#list":
+      //   return <List />;
       default:
         return <Landing />;
     }

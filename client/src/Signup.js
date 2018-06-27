@@ -1,19 +1,40 @@
 import React from "react";
-
+import './index.css';
+//import '.signup.css';
+import { Form, FormControl, FormGroup, Col, Button } from 'react-bootstrap';
 
 class Signup extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="Signup">
         <h1>Signup</h1>
-        <form action="/register" method="post">
+        <Form horizontal action="/register" method="post">
+          <FormGroup controlId="formHorizontalUser">
+          <Col sm={2}>
           Username:
-          <input type="text" name="username"></input>
+          </Col>
+          <Col sm={10}>
+          <FormControl type="text" name="username" />
+          </Col>
+          </FormGroup>
+          <FormGroup controlId="formHorizontalPassword">
+          <Col sm={2}>
           Password:
-          <input type="password" name="password"></input>
-          <input type="submit" value="Submit"></input>
-        </form>
+          </Col>
+          <Col sm={10}>
+          <FormControl type="text" name="password" />
+          </Col>
+          </FormGroup>
+          <FormGroup>
+          <Col sm={12}>
+          <Button bsStyle="info" type="submit" value="Submit">Submit</Button>
+          </Col>
+          </FormGroup>
+        </Form>
+        <Col sm={12}>
+        <p>Already have an account? <a href="#login">Log in here</a></p>
+        </Col>
       </div>
     );
   }

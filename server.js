@@ -60,6 +60,134 @@ app.get('/test', (req, res) => {
   ]);
 });
 
+app.post('/onetwo', function(req, res) {
+  let inName = req.body.name;
+  let name = { name : inName };
+  let onepic = req.body.onepic;
+  let onemov = req.body.onemov;
+  let twopic = req.body.twopic;
+  let twomov = req.body.twomov;
+
+  Movie.findOne(name, function(err, doc) {
+    if (err) {
+      console.error('error!!!');
+      res.redirect('/#profile');
+    }
+    else if (doc) {
+      doc.movie.one.name = twomov;
+      doc.movie.one.pic = twopic;
+      doc.movie.two.name = onemov;
+      doc.movie.two.pic = onepic;
+      doc.save(function (err, mov) {
+        if (err) return handleError(err);
+        res.redirect('/#profile');
+      });
+    }
+    else {
+      console.log('no matched query');
+      res.redirect('/#profile');
+    }
+  },
+  { new : true }
+);
+});
+
+app.post('/twothree', function(req, res) {
+  let inName = req.body.name;
+  let name = { name : inName };
+  let threepic = req.body.threepic;
+  let threemov = req.body.threemov;
+  let twopic = req.body.twopic;
+  let twomov = req.body.twomov;
+
+  Movie.findOne(name, function(err, doc) {
+    if (err) {
+      console.error('error!!!');
+      res.redirect('/#profile');
+    }
+    else if (doc) {
+      doc.movie.three.name = twomov;
+      doc.movie.three.pic = twopic;
+      doc.movie.two.name = threemov;
+      doc.movie.two.pic = threepic;
+      doc.save(function (err, mov) {
+        if (err) return handleError(err);
+        res.redirect('/#profile');
+      });
+    }
+    else {
+      console.log('no matched query');
+      res.redirect('/#profile');
+    }
+  },
+  { new : true }
+);
+});
+
+app.post('/threefour', function(req, res) {
+  let inName = req.body.name;
+  let name = { name : inName };
+  let threepic = req.body.threepic;
+  let threemov = req.body.threemov;
+  let fourpic = req.body.fourpic;
+  let fourmov = req.body.fourmov;
+
+  Movie.findOne(name, function(err, doc) {
+    if (err) {
+      console.error('error!!!');
+      res.redirect('/#profile');
+    }
+    else if (doc) {
+      doc.movie.three.name = fourmov;
+      doc.movie.three.pic = fourpic;
+      doc.movie.four.name = threemov;
+      doc.movie.four.pic = threepic;
+      doc.save(function (err, mov) {
+        if (err) return handleError(err);
+        res.redirect('/#profile');
+      });
+    }
+    else {
+      console.log('no matched query');
+      res.redirect('/#profile');
+    }
+  },
+  { new : true }
+);
+});
+
+app.post('/fourfive', function(req, res) {
+  let inName = req.body.name;
+  let name = { name : inName };
+  let fivepic = req.body.fivepic;
+  let fivemov = req.body.fivemov;
+  let fourpic = req.body.fourpic;
+  let fourmov = req.body.fourmov;
+
+  Movie.findOne(name, function(err, doc) {
+    if (err) {
+      console.error('error!!!');
+      res.redirect('/#profile');
+    }
+    else if (doc) {
+      doc.movie.five.name = fourmov;
+      doc.movie.five.pic = fourpic;
+      doc.movie.four.name = fivemov;
+      doc.movie.four.pic = fivepic;
+      doc.save(function (err, mov) {
+        if (err) return handleError(err);
+        res.redirect('/#profile');
+      });
+    }
+    else {
+      console.log('no matched query');
+      res.redirect('/#profile');
+    }
+  },
+  { new : true }
+);
+});
+
 app.post('/movie', function(req, res) {
   let inName = req.body.name;
   let name = { name : inName };
@@ -110,7 +238,25 @@ app.post('/movie', function(req, res) {
 );
 });
 
-app.get('/movie', (req, res) => {
+app.get('/userprofile', (req, res) => {
+  let inName = req.query.name;
+  let name = { name : inName };
+  Movie.findOne(name, function(err, list){
+    if (err) {
+      console.error('error!!!');
+      res.redirect('/#profile');
+    }
+    else if (list){
+      res.json(list);
+    }
+    else {
+      console.log('no matched query');
+      res.redirect('/#profile');
+    }
+  });
+})
+
+app.get('/listall', (req, res) => {
   Movie.find(function(err, users){
     res.json(users);
   });
@@ -127,7 +273,7 @@ app.get('/auth', (req, res, next) => {
 app.post('/register', function(req, res) {
   User.register(new User({ username : req.body.username }), req.body.password, function(err, user) {
     if (err) {
-      // return console.log( user : user );
+      return console.log(err);
     }
     passport.authenticate('local')(req, res, function () {
       res.redirect('/');
@@ -138,6 +284,13 @@ app.post('/register', function(req, res) {
 
 app.post('/login', passport.authenticate('local'), function(req, res) {
     res.redirect('/#profile');
+});
+
+app.get('/logout', function(req, res) {
+  req.logOut();
+  req.session.destroy(function (err) {
+    res.redirect('/'); //Inside a callback… bulletproof!
+  });
 });
 
 app.get('*', (req, res) => {

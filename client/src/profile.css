@@ -1,0 +1,26 @@
+.profileBorder {
+    border: 3px solid #595959;
+    border-radius: 3px;
+}
+
+.profilePic {
+    max-width: 100%;
+    object-fit: contain;
+   border: 1px solid white;
+   
+}
+
+.Media.Body {
+    padding: 10px;
+}
+
+.Profile {
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.deleteButton {
+    position: relative;
+    bottom: 0;
+}
