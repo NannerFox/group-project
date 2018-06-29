@@ -73,15 +73,18 @@ movieDisplay() {
                   <input type="hidden" name="twomov" value={this.state.movies.two.name}/>
                   <input type="hidden" name="twopic" value={this.state.movies.two.pic}/>
                   <Button bsStyle="info" type="submit">
-                    Move Down  
+                    Move Down
                     <Glyphicon glyph="arrow-down" />
                   </Button>
                 </form>
                 <br />
+                <form action="/delone" method="post" name="delone">
+                <input type="hidden" name="name" value={this.state.user}/>
                 <Button className="deleteButton" bsStyle="info" type="submit">
                   Delete Movie
                   <Glyphicon glyph="remove" />
                 </Button>
+                </form>
               </p>
             </Media.Body>
           </Col>
@@ -110,15 +113,18 @@ movieDisplay() {
                   <input type="hidden" name="twomov" value={this.state.movies.two.name}/>
                   <input type="hidden" name="twopic" value={this.state.movies.two.pic}/>
                   <Button bsStyle="info" type="submit">
-                    Move Down 
+                    Move Down
                     <Glyphicon glyph="arrow-down" />
                   </Button>
                 </form>
                 <br />
-                <Button bsStyle="info" type="submit">
+                <form action="/deltwo" method="post" name="deltwo">
+                <input type="hidden" name="name" value={this.state.user}/>
+                <Button className="deleteButton" bsStyle="info" type="submit">
                   Delete Movie
                   <Glyphicon glyph="remove" />
                 </Button>
+                </form>
               </p>
             </Media.Body>
           </Col>
@@ -147,15 +153,18 @@ movieDisplay() {
                   <input type="hidden" name="fourmov" value={this.state.movies.four.name}/>
                   <input type="hidden" name="fourpic" value={this.state.movies.four.pic}/>
                   <Button bsStyle="info" type="submit">
-                    Move Down 
+                    Move Down
                     <Glyphicon glyph="arrow-down" />
                   </Button>
                 </form>
                 <br />
-                <Button bsStyle="info" type="submit">
+                <form action="/delthree" method="post" name="delthree">
+                <input type="hidden" name="name" value={this.state.user}/>
+                <Button className="deleteButton" bsStyle="info" type="submit">
                   Delete Movie
                   <Glyphicon glyph="remove" />
                 </Button>
+                </form>
               </p>
             </Media.Body>
           </Col>
@@ -184,15 +193,18 @@ movieDisplay() {
                   <input type="hidden" name="fourmov" value={this.state.movies.four.name}/>
                   <input type="hidden" name="fourpic" value={this.state.movies.four.pic}/>
                   <Button bsStyle="info" type="submit">
-                    Move Down 
+                    Move Down
                     <Glyphicon glyph="arrow-down" />
                   </Button>
                 </form>
                 <br />
-                <Button bsStyle="info" type="submit">
+                <form action="/delfour" method="post" name="delfour">
+                <input type="hidden" name="name" value={this.state.user}/>
+                <Button className="deleteButton" bsStyle="info" type="submit">
                   Delete Movie
                   <Glyphicon glyph="remove" />
                 </Button>
+                </form>
               </p>
             </Media.Body>
           </Col>
@@ -217,10 +229,13 @@ movieDisplay() {
                 <form>
                 </form>
                 <br />
-                <Button bsStyle="info" type="submit">
+                <form action="/delfive" method="post" name="delfive">
+                <input type="hidden" name="name" value={this.state.user}/>
+                <Button className="deleteButton" bsStyle="info" type="submit">
                   Delete Movie
                   <Glyphicon glyph="remove" />
                 </Button>
+                </form>
               </p>
             </Media.Body>
           </Col>

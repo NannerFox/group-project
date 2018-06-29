@@ -21,7 +21,7 @@ class Navibar extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-            <NavItem className="navChild" eventKey={4} href="#suckit">
+            <NavItem className="navChild" eventKey={4} href="#list">
                 Lists
               </NavItem>
               <NavItem className="navChild" eventKey={1} href="#profile">

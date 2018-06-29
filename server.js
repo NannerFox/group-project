@@ -60,6 +60,136 @@ app.get('/test', (req, res) => {
   ]);
 });
 
+app.post('/delone', function(req, res) {
+  let inName = req.body.name;
+  let name = { name : inName };
+
+  Movie.findOne(name, function(err, doc) {
+    if (err) {
+      console.error('error!!!');
+      res.redirect('/#profile');
+    }
+    else if (doc) {
+      doc.movie.one.name = null;
+      doc.movie.one.pic = null;
+      doc.save(function (err, mov) {
+        if (err) return handleError(err);
+        res.redirect('/#profile');
+      });
+    }
+    else {
+      console.log('no matched query');
+      res.redirect('/#profile');
+    }
+  },
+  { new : true }
+);
+});
+
+app.post('/deltwo', function(req, res) {
+  let inName = req.body.name;
+  let name = { name : inName };
+
+  Movie.findOne(name, function(err, doc) {
+    if (err) {
+      console.error('error!!!');
+      res.redirect('/#profile');
+    }
+    else if (doc) {
+      doc.movie.two.name = null;
+      doc.movie.two.pic = null;
+      doc.save(function (err, mov) {
+        if (err) return handleError(err);
+        res.redirect('/#profile');
+      });
+    }
+    else {
+      console.log('no matched query');
+      res.redirect('/#profile');
+    }
+  },
+  { new : true }
+);
+});
+
+app.post('/delthree', function(req, res) {
+  let inName = req.body.name;
+  let name = { name : inName };
+
+  Movie.findOne(name, function(err, doc) {
+    if (err) {
+      console.error('error!!!');
+      res.redirect('/#profile');
+    }
+    else if (doc) {
+      doc.movie.three.name = null;
+      doc.movie.three.pic = null;
+      doc.save(function (err, mov) {
+        if (err) return handleError(err);
+        res.redirect('/#profile');
+      });
+    }
+    else {
+      console.log('no matched query');
+      res.redirect('/#profile');
+    }
+  },
+  { new : true }
+);
+});
+
+app.post('/delfour', function(req, res) {
+  let inName = req.body.name;
+  let name = { name : inName };
+
+  Movie.findOne(name, function(err, doc) {
+    if (err) {
+      console.error('error!!!');
+      res.redirect('/#profile');
+    }
+    else if (doc) {
+      doc.movie.four.name = null;
+      doc.movie.four.pic = null;
+      doc.save(function (err, mov) {
+        if (err) return handleError(err);
+        res.redirect('/#profile');
+      });
+    }
+    else {
+      console.log('no matched query');
+      res.redirect('/#profile');
+    }
+  },
+  { new : true }
+);
+});
+
+app.post('/delfive', function(req, res) {
+  let inName = req.body.name;
+  let name = { name : inName };
+
+  Movie.findOne(name, function(err, doc) {
+    if (err) {
+      console.error('error!!!');
+      res.redirect('/#profile');
+    }
+    else if (doc) {
+      doc.movie.five.name = null;
+      doc.movie.five.pic = null;
+      doc.save(function (err, mov) {
+        if (err) return handleError(err);
+        res.redirect('/#profile');
+      });
+    }
+    else {
+      console.log('no matched query');
+      res.redirect('/#profile');
+    }
+  },
+  { new : true }
+);
+});
+
 app.post('/onetwo', function(req, res) {
   let inName = req.body.name;
   let name = { name : inName };
