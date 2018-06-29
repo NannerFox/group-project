@@ -6,6 +6,7 @@ import Profile from './Profile';
 import Result from './Result';
 import Signup from './Signup';
 import List from './List';
+import User from './User';
 
 class Route extends React.Component {
 
@@ -45,6 +46,8 @@ routeSwitch() {
         return <Signup />;
       case "#list":
         return <List />;
+      case "#user":
+        return <User />;
       default:
         return <Landing />;
     }

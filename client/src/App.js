@@ -5,7 +5,6 @@ import Footer from './footer.js';
 import Route from './Route';
 
 class App extends Component {
-
   render() {
     return (
       <div className="App">

@@ -59,6 +59,24 @@ app.get('/test', (req, res) => {
     {id:4, name: "test"}
   ]);
 });
+//
+app.get('/userlist', (req, res) => {
+  let inName = req.query.name;
+  let name = { name : inName };
+  Movie.findOne(name, function(err, list){
+    if (err) {
+      console.error('error!!!');
+      res.redirect('/#home');
+    }
+    else if (list){
+      res.json(list);
+    }
+    else {
+      console.log('no matched query');
+      res.redirect('/#home');
+    }
+  });
+})
 
 app.post('/delone', function(req, res) {
   let inName = req.body.name;
@@ -333,31 +351,47 @@ app.post('/movie', function(req, res) {
         if (doc.movie.one.name == null){
           doc.movie.one.name = moviename;
           doc.movie.one.pic = pic;
+          doc.save(function (err, updatedMov) {
+            if (err) return handleError(err);
+            res.redirect('/#profile');
+          });
         }
         else if (doc.movie.two.name == null){
           doc.movie.two.name = moviename;
           doc.movie.two.pic = pic;
+          doc.save(function (err, updatedMov) {
+            if (err) return handleError(err);
+            res.redirect('/#profile');
+          });
         }
         else if (doc.movie.three.name == null){
           doc.movie.three.name = moviename;
           doc.movie.three.pic = pic;
+          doc.save(function (err, updatedMov) {
+            if (err) return handleError(err);
+            res.redirect('/#profile');
+          });
         }
         else if (doc.movie.four.name == null){
           doc.movie.four.name = moviename;
           doc.movie.four.pic = pic;
+          doc.save(function (err, updatedMov) {
+            if (err) return handleError(err);
+            res.redirect('/#profile');
+          });
         }
         else if (doc.movie.five.name == null){
           doc.movie.five.name = moviename;
           doc.movie.five.pic = pic;
+          doc.save(function (err, updatedMov) {
+            if (err) return handleError(err);
+            res.redirect('/#profile');
+          });
         }
         else {
-          console.error('All slots filled!');
+          console.log('All slots filled!');
           res.redirect('/#profile');
         }
-        doc.save(function (err, updatedMov) {
-          if (err) return handleError(err);
-          res.redirect('/#profile');
-        });
       }
       else {
         console.log('no matched query');
