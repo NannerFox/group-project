@@ -13,6 +13,7 @@ const db = mongoose.connection;
 const app = express();
 const User = require('./models/User');
 const Movie = require('./models/Movie');
+const Rating = require('./models/Rating');
 // Development mode port
 const port = process.env.PORT || 5000;
 app.listen(port)
@@ -434,6 +435,22 @@ app.get('/auth', (req, res, next) => {
 	}
 })
 
+app.get('/rating', (req, res) => {
+  let inName = req.query.name;
+  let name = { name : inName };
+  Rating.find(name, function(err, ratings){
+    res.json(ratings);
+  });
+})
+
+app.post('/rating', (req, res) => {
+  Rating.create({
+    name : req.query.name,
+    rating: req.query.rating
+  });
+  res.end();
+});
+
 app.post('/register', function(req, res) {
   User.register(new User({ username : req.body.username }), req.body.password, function(err, user) {
     if (err) {
@@ -443,6 +460,10 @@ app.post('/register', function(req, res) {
       res.redirect('/');
     });
     Movie.create({ name : req.body.username});
+    Rating.create({
+      name : req.body.username,
+      rating: 5
+    });
   });
 });
 

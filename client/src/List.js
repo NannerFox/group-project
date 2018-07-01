@@ -3,6 +3,7 @@ import FullFetch from './FullFetch';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import listReducer from './reducers/listReducer';
+import Ratings from './Ratings';
 
 const listStore = createStore(listReducer);
 
@@ -26,6 +27,7 @@ class FinalList extends React.Component {
       <div>{this.state.list.map((item, index) => <div key={index}>
             <div id={item.id}>
               <h1>{item.name}'s List</h1>
+              <Ratings username={item.name}/>
               <h1>1</h1>
               <img className="moviepic" src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${item.movie.one.pic}`} alt="58008" />
               <h2>{item.movie.one.name}</h2>

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Ratings from './Ratings';
 
 class User extends React.Component {
   constructor() {
@@ -49,6 +50,7 @@ class User extends React.Component {
         <div>
           <h1 className="App-intro">{this.state.searchedUser}'s List</h1>
         </div>
+        <div><Ratings username={this.state.searchedUser}/></div>
         <div>
             <h1>1</h1>
             <img className="moviepic" src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${this.state.userlist.one.pic}`} alt="58008" />
