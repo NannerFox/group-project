@@ -391,7 +391,7 @@ app.post('/movie', function(req, res) {
         }
         else {
           console.log('All slots filled!');
-          res.redirect('/#profile');
+          res.redirect('/#error6');
         }
       }
       else {
@@ -422,7 +422,7 @@ app.get('/userprofile', (req, res) => {
 })
 
 app.get('/listall', (req, res) => {
-  Movie.find(function(err, users){
+  Movie.find({}, null, {sort: {'_id': -1}},function(err, users){
     res.json(users);
   });
 })
@@ -454,7 +454,7 @@ app.post('/rating', (req, res) => {
 app.post('/register', function(req, res) {
   User.register(new User({ username : req.body.username }), req.body.password, function(err, user) {
     if (err) {
-      return console.log(err);
+      return res.redirect('/#error1');
     }
     passport.authenticate('local')(req, res, function () {
       res.redirect('/');
@@ -474,7 +474,7 @@ app.post('/login', passport.authenticate('local'), function(req, res) {
 app.get('/logout', function(req, res) {
   req.logOut();
   req.session.destroy(function (err) {
-    res.redirect('/'); //Inside a callback… bulletproof!
+    res.redirect("/"); //Inside a callback… bulletproof!
   });
 });
 

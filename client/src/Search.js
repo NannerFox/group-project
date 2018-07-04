@@ -18,8 +18,13 @@ searchMovies = () => {
 
   handleSubmit = e => {
     e.preventDefault();
-    window.location.hash = "#result";
-    this.searchMovies();
+    if(!this.state.search) {
+      window.location.hash = "#landing";
+    }
+    else {
+      window.location.hash = "#result";
+      this.searchMovies();
+    }
   };
 
   render() {

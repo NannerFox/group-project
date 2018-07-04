@@ -24,3 +24,21 @@
     position: relative;
     bottom: 0;
 }
+
+.mediaShare {
+    text-align: right;
+}
+
+
+@media (max-width: 450px) {
+    h2 {
+      font-size: 1em;
+    }
+    h4 {
+        font-size: 1em;
+    }
+  }
+
+  .mediaStyle {
+    border-radius: 4px;
+  }

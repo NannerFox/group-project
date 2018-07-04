@@ -1,0 +1,13 @@
+.userPic {
+    max-width: 100%;
+    object-fit: contain;
+    border: 3px solid #595959;
+    border-radius: 3px;
+   margin-bottom: 5px;
+   padding: 1px;
+}
+
+.user {
+    text-align: left;
+}
+

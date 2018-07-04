@@ -2,6 +2,16 @@ import React from "react";
 import axios from 'axios';
 import './index.css';
 import './profile.css';
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  RedditShareButton,
+  RedditIcon,
+  EmailShareButton,
+  EmailIcon
+} from 'react-share';
 
 import { Button, Media, Col, Row, Glyphicon } from 'react-bootstrap';
 
@@ -52,7 +62,7 @@ movieDisplay() {
     <div className="Profile">
       <Media>
         <Row className="show-grid">
-          <h3>Movie One</h3>
+          <h2>Movie One</h2>
           <Col xs={6} sm={6} md={6} smPush={1} mdPush={2}>
             <Media.Left align="middle">
               <div className="profileBorder">
@@ -92,7 +102,7 @@ movieDisplay() {
       </Media>
       <Media>
         <Row>
-          <h3>Movie Two</h3>
+          <h2>Movie Two</h2>
           <Col xs={6} sm={6} md={6} smPush={1} mdPush={2}>
             <Media.Left>
               <div className="profileBorder">
@@ -132,7 +142,7 @@ movieDisplay() {
       </Media>
       <Media>
         <Row>
-          <h3>Movie Three</h3>
+          <h2>Movie Three</h2>
           <Col xs={6} sm={6} md={6} smPush={1} mdPush={2}>
             <Media.Left>
                 <div className="profileBorder">
@@ -172,7 +182,7 @@ movieDisplay() {
       </Media>
       <Media>
         <Row>
-          <h3>Movie Four</h3>
+          <h2>Movie Four</h2>
           <Col xs={6} sm={6} md={6} smPush={1} mdPush={2}>
             <Media.Left>
               <div className="profileBorder">
@@ -212,7 +222,7 @@ movieDisplay() {
       </Media>
       <Media>
         <Row>
-          <h3>Movie Five</h3>
+          <h2>Movie Five</h2>
           <Col xs={6} sm={6} md={6} smPush={1} mdPush={2}>
             <Media.Left>
               <div className="profileBorder">
@@ -248,6 +258,33 @@ movieDisplay() {
     return(
       <div>
         <h1>Welcome, {this.state.user}!</h1>
+        <h4>Share Your List on Social Media</h4>
+          <Row>
+            <Col xs={2} sm={4} />
+            <Col xs={2} sm={1}>
+          <FacebookShareButton className="mediaShare" url={`http://moviefive.herokuapp.com/?${this.state.user}#user`} quote="Check Out My Top 5 Movies on MovieFive!">
+            <FacebookIcon className="mediaStyle" size={32} round={false}/>
+          </FacebookShareButton>
+          </Col>
+          <Col xs={2} sm={1}>
+          <EmailShareButton className="mediaShare" url={`http://moviefive.herokuapp.com/?${this.state.user}#user`} subject="Check Out My Top 5 Movies on MovieFive!">
+            <EmailIcon className="mediaStyle" size={32} round={false}/>
+          </EmailShareButton>
+          </Col>
+          <Col xs={2} sm={1}>
+          <RedditShareButton className="mediaShare" url={`http://moviefive.herokuapp.com/?${this.state.user}#user`} Title="Check Out My Top 5 Movies on MovieFive!">
+            <RedditIcon className="mediaStyle" size={32} round={false}/>
+          </RedditShareButton>
+          </Col>
+          <Col xs={2} sm={1}>
+          <TwitterShareButton className="mediaShare" url={`http://moviefive.herokuapp.com/?${this.state.user}#user`} Title="MovieFive Top 5 List">
+            <TwitterIcon className="mediaStyle" size={32} round={false}/>
+          </TwitterShareButton>
+          </Col>
+          <Col xs={2} sm={4} />
+          </Row>
+        
+        <h4>Or Copy this URL: <br />http://moviefive.herokuapp.com/?{this.state.user}#user</h4>
         {this.movieDisplay()}
       </div>
     );

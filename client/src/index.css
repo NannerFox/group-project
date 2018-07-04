@@ -4,7 +4,7 @@ html {
 }
 
 html, body {
-  background-color: white;
+  background-color: #bfbfbf;
   font-family: 'Muli', sans-serif;
 }
 
@@ -45,7 +45,7 @@ h1 {
 }
 
 .navChild {
-  flex:1
+  flex:1;
 }
 
 /*Navbar*/
@@ -58,6 +58,7 @@ h1 {
 }
 
 @media (max-width: 300px) {
+  
   .navbar-header {
       float: none;
   }
@@ -86,6 +87,54 @@ h1 {
     font-size: 40px;
     padding-bottom: 10px;
     
+  }
+}
+@media (max-width: 400px) {
+  .AppContent {
+    padding: 10px;
+  }
+  
+  h2 {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 450px) {
+  h2 {
+    font-size: .8em;
+  }
+}
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: 2em;
+  }
+  h3 {
+    font-size: 1.17em;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  footer{
+    position:static;
+    width:auto;
+    bottom:auto;
+  }
+  .listPic {
+    size: 90%;
+  }
+  .btn-info {
+    font-size: 80%;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 700px) {
+  h3 {
+    font-size: 1.17em;
+  }
+  h2 {
+    font-size: 1.5em;
   }
 }
 
@@ -177,15 +226,6 @@ footer {
   
 }
 
-/*Footer to go off screen when screen gets too small*/
-@media(max-height:500px){
-  footer{
-    position:static;
-    width:auto;
-    bottom:auto;
-  }
-}
-
 .footerLogo {
   animation: App-logo-spin infinite 20s linear;
 }
@@ -195,10 +235,25 @@ footer {
   to { transform: rotate(360deg); }
 }
 
+.logout {
+  color: white;
+  float: right;
+  padding-right: .5em;
+}
+
+.logout:hover {
+  color: #00d8ff;
+  text-decoration: none;
+}
 
 /*Button to be React blue*/
 .btn-info, .btn-info:active {
   background-color: #00d8ff;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 4px 16px 0 rgba(0, 0, 0, 0.19);
-  
+}
+
+/*Error styling*/
+.errorLink:hover {
+  color: #00d8ff;
+  text-decoration: none;
 }

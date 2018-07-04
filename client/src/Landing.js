@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Media } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import './index.css';
 import './landing.css';
 

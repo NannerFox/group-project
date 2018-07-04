@@ -1,5 +1,5 @@
 import React from "react";
-import { Media } from 'react-bootstrap';
+import { Media, Row, Col } from 'react-bootstrap';
 import './index.css';
 import './about.css';
 
@@ -11,35 +11,48 @@ class About extends React.Component {
       <div className="About">
         <h1>About the Devs</h1>
         <Media>
-    <Media.Left>
-      <img width={200} height={200} src="/mvlogopng.png" alt="thumbnail" />
-    </Media.Left>
-    <Media.Body>
-      <Media.Heading>Alan Wilson aka NannerFox</Media.Heading>
-      <p>
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-        ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at,
-        tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-        fringilla. Donec lacinia congue felis in faucibus.
-      </p>
-    </Media.Body>
-  </Media>
-  <br />
-  <Media>
-    <Media.Body>
-      <Media.Heading>Andrew Pacheco aka checkawrz</Media.Heading>
-      <p>
-        Andrew is a 28 year old beginning developer from California.
-        He is studying javascript and hopes to one day be as good at React
-        as Alan. His hobbies include Hearthstone, being groovy, and the occasional
-        craft beer.
-      </p>
-    </Media.Body>
-    <Media.Right>
-      <img width={250} height={250} src="/aboutAndrew.jpg" alt="thumbnail" />
-    </Media.Right>
-  </Media>
-        </div>
+          <Row>
+            <Col sm={5}>
+              <Media.Left align="middle">
+                <img className="aboutPic" width={250} height={250} src="/aboutAlan.jpg" alt="r34c7w1z4rd" />
+              </Media.Left>
+            </Col>
+            <Col sm={7}>
+              <Media.Body>
+                <Media.Heading><h3>Alan Wilson aka NannerFox</h3></Media.Heading>
+                <p>
+                  Alan is a 35 year old aspiring developer from Illinois. With a wife 
+                  and 3 kids, he's a full time father and family man along side of his 
+                  software development advances. He hopes one day to work with Artificial 
+                  Intelligence. Alan's hobbies include Cars, Computers and Gaming, Music, 
+                  and Craft Beer. <br /> 01000010 01000101 01000101 01010010
+                </p>
+              </Media.Body>
+            </Col>
+          </Row>
+        </Media>
+        <br />
+        <Media>
+          <Row>
+            <Col sm={7}>
+              <Media.Body>
+                <Media.Heading><h3>Andrew Pacheco aka checkawrz</h3></Media.Heading>
+                <p>
+                  Andrew is a 28 year old beginning developer from California.
+                  He is studying javascript and hopes to one day be as good at React
+                  as Alan. His hobbies include Hearthstone, using his sous vide, being 
+                  groovy, and the occasional craft beer.
+                </p>
+              </Media.Body>
+            </Col>
+            <Col sm={5}>
+              <Media.Right>
+                <img className="aboutPic" width={250} height={250} src="/aboutAndrew.jpg" alt="gr00vydr3w" />
+              </Media.Right>
+            </Col>
+          </Row>
+        </Media>
+      </div>
     );
   }
 }
