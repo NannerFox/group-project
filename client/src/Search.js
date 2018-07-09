@@ -19,7 +19,7 @@ searchMovies = () => {
   handleSubmit = e => {
     e.preventDefault();
     if(!this.state.search) {
-      window.location.hash = "#landing";
+      window.location.hash = "#error2";
     }
     else {
       window.location.hash = "#result";

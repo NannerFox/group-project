@@ -403,6 +403,29 @@ app.post('/movie', function(req, res) {
 );
 });
 
+app.post('/delprofile', function(req, res) {
+  let inName = req.body.name;
+  let name = { name : inName };
+  let uname = { username : inName }
+  req.session.destroy();
+  User.deleteOne(uname, function(err) {
+    if (err) {
+      return console.log(err);
+    }
+  });
+  Movie.deleteOne(name, function(err) {
+    if (err) {
+      return console.log(err);
+    }
+  });
+  Rating.deleteMany(name, function(err) {
+    if (err) {
+      return console.log(err);
+    }
+  });
+  res.redirect('/#landing');
+});
+
 app.get('/userprofile', (req, res) => {
   let inName = req.query.name;
   let name = { name : inName };
@@ -457,7 +480,7 @@ app.post('/register', function(req, res) {
       return res.redirect('/#error1');
     }
     passport.authenticate('local')(req, res, function () {
-      res.redirect('/');
+      res.redirect('/#profile');
     });
     Movie.create({ name : req.body.username});
     Rating.create({
@@ -467,7 +490,10 @@ app.post('/register', function(req, res) {
   });
 });
 
-app.post('/login', passport.authenticate('local'), function(req, res) {
+app.post('/login', passport.authenticate('local',{
+      successRedirect: '/#profile',
+      failureRedirect: '/#error3',
+    }), function(req, res) {
     res.redirect('/#profile');
 });
 
@@ -477,6 +503,7 @@ app.get('/logout', function(req, res) {
     res.redirect("/"); //Inside a callback… bulletproof!
   });
 });
+
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/build/index.html'));

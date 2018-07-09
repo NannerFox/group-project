@@ -20,6 +20,8 @@ class IsLoggedIn extends React.Component {
       super()
       this.state = {
         user: null,
+        buttonText: "Copy To Clipboard",
+        copyText: null,
         movies: {
         "one": {
             "name": "one",
@@ -45,8 +47,12 @@ class IsLoggedIn extends React.Component {
     }
       this.movieDisplay = this.movieDisplay.bind(this);
     }
+
 componentDidMount() {
-  this.setState({ user: this.props.user });
+  this.setState({
+    user: this.props.user,
+    copyText: `http://moviefive.herokuapp.com/?${this.props.user}#user`
+    });
   var currentUser = this.props.user;
   axios.get(`/userprofile/?name=${currentUser}`)
     .then((response) => {
@@ -66,7 +72,7 @@ movieDisplay() {
           <Col xs={6} sm={6} md={6} smPush={1} mdPush={2}>
             <Media.Left align="middle">
               <div className="profileBorder">
-                <img className="profilePic" src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${this.state.movies.one.pic}`} alt="58008" />
+                <img className="profilePic" onError={this.addDefaultSrc} src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${this.state.movies.one.pic}`} alt="58008" />
               </div>
             </Media.Left>
           </Col>
@@ -106,7 +112,7 @@ movieDisplay() {
           <Col xs={6} sm={6} md={6} smPush={1} mdPush={2}>
             <Media.Left>
               <div className="profileBorder">
-                <img className="profilePic" src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${this.state.movies.two.pic}`} alt="58008" />
+                <img className="profilePic" onError={this.addDefaultSrc} src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${this.state.movies.two.pic}`} alt="58008" />
               </div>
             </Media.Left>
           </Col>
@@ -146,7 +152,7 @@ movieDisplay() {
           <Col xs={6} sm={6} md={6} smPush={1} mdPush={2}>
             <Media.Left>
                 <div className="profileBorder">
-                  <img className="profilePic" src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${this.state.movies.three.pic}`} alt="58008" />
+                  <img className="profilePic" onError={this.addDefaultSrc} src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${this.state.movies.three.pic}`} alt="58008" />
                 </div>
             </Media.Left>
           </Col>
@@ -186,7 +192,7 @@ movieDisplay() {
           <Col xs={6} sm={6} md={6} smPush={1} mdPush={2}>
             <Media.Left>
               <div className="profileBorder">
-                <img className="profilePic" src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${this.state.movies.four.pic}`} alt="58008" />
+                <img className="profilePic" onError={this.addDefaultSrc} src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${this.state.movies.four.pic}`} alt="58008" />
               </div>
             </Media.Left>
           </Col>
@@ -226,7 +232,7 @@ movieDisplay() {
           <Col xs={6} sm={6} md={6} smPush={1} mdPush={2}>
             <Media.Left>
               <div className="profileBorder">
-                <img className="profilePic" src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${this.state.movies.five.pic}`} alt="58008" />
+                <img className="profilePic" onError={this.addDefaultSrc} src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2${this.state.movies.five.pic}`} alt="58008" />
               </div>
             </Media.Left>
           </Col>
@@ -251,10 +257,26 @@ movieDisplay() {
           </Col>
         </Row>
       </Media>
+      <div>
+        <h3>Delete Your Profile:</h3>
+        <form action="/delprofile" method="post" name="delprofile">
+          <input type="hidden" name="name" value={this.state.user}/>
+          <Button className="deleteButton" bsStyle="danger" type="submit">
+            DELETE PROFILE
+            <Glyphicon glyph="exclamation-sign"/>
+          </Button>
+          <h4>WARNING: This action CANNOT be UNDONE!</h4>
+        </form>
+      </div>
     </div>
   )
 }
-  render() {
+
+addDefaultSrc(ev){
+  ev.target.src = './placeposter.jpg'
+}
+
+render() {
     return(
       <div>
         <h1>Welcome, {this.state.user}!</h1>
@@ -283,8 +305,10 @@ movieDisplay() {
           </Col>
           <Col xs={2} sm={4} />
           </Row>
-        
-        <h4>Or Copy this URL: <br />http://moviefive.herokuapp.com/?{this.state.user}#user</h4>
+
+        <h4>Or Copy this URL:
+          <br /><a className="errorLink" href={this.state.copyText}>{this.state.copyText}</a>
+        </h4>
         {this.movieDisplay()}
       </div>
     );

@@ -7,8 +7,10 @@ import Result from './Result';
 import Signup from './Signup';
 import List from './List';
 import User from './User';
-import Error6 from './Error6';
 import Error1 from './Error1';
+import Error2 from './Error2';
+import Error3 from './Error3';
+import Error6 from './Error6';
 
 class Route extends React.Component {
 
@@ -50,10 +52,14 @@ routeSwitch() {
         return <List />;
       case "#user":
         return <User />;
-      case "#error6":
-        return <Error6 />;
       case "#error1":
         return <Error1 />;
+      case "#error2":
+        return <Error2 />;
+      case "#error3":
+        return <Error3 />;
+      case "#error6":
+        return <Error6 />;
       default:
         return <Landing />;
     }

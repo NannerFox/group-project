@@ -58,6 +58,7 @@ class Ratings extends React.Component {
           onChange={(rate) => this.changeRate(rate)}
           emptySymbol="fa fa-star-o fa-2x"
           fullSymbol="fa fa-star fa-2x"
+          fractions="2"
         />
       </div>
   )}
